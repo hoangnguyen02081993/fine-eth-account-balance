@@ -1,0 +1,23 @@
+{
+  "name": "fine-eth-account-balance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "find-eth-tocket.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoangnguyen02081993/fine-eth-account-balance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoangnguyen02081993/fine-eth-account-balance/issues"
+  },
+  "homepage": "https://github.com/hoangnguyen02081993/fine-eth-account-balance#readme",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "web3": "^4.3.0"
+  }
+}
