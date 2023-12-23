@@ -51,20 +51,26 @@ const randomPrivateKey = () => {
 
 const fetchBalanceWithRandomAccount = async (index) => {
   index = getNextIndex(index, Web3List.length);
-  console.log(`Fetching with ${nodeUrls[index]}`);
-  const web3 = Web3List[index];
-  const account = await web3.eth.accounts.privateKeyToAccount(
-    `0x${await randomPrivateKey()}`,
-  );
-  const balance = await web3.eth.getBalance(account.address);
-  const etherBalance = web3.utils.fromWei(balance, 'ether');
-  writeToLogFile(
-    account.address,
-    account.privateKey,
-    Number(balance),
-    etherBalance,
-  );
-  return index;
+  try {
+    console.log(`Fetching with ${nodeUrls[index]} ${index}`);
+    const web3 = Web3List[index];
+    const account = await web3.eth.accounts.privateKeyToAccount(
+      `0x${await randomPrivateKey()}`,
+    );
+    const balance = await web3.eth.getBalance(account.address);
+    const etherBalance = web3.utils.fromWei(balance, 'ether');
+    writeToLogFile(
+      account.address,
+      account.privateKey,
+      Number(balance),
+      etherBalance,
+    );
+    return index;
+  }
+  catch (e) {
+    console.log(`Error with ${nodeUrls[index]} ${index}`);
+    return index;
+  }
 };
 
 (async () => {
@@ -75,7 +81,9 @@ const fetchBalanceWithRandomAccount = async (index) => {
   }
   let index = 0;
   while (1) {
-    fetchBalanceWithRandomAccount(index, null);
+    index = await fetchBalanceWithRandomAccount(index, null);
     await sleep(500);
   }
 })();
+
+process.title = 'find-eth-process'
