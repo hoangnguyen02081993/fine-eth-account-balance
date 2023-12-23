@@ -76,6 +76,6 @@ const fetchBalanceWithRandomAccount = async (index) => {
   let index = 0;
   while (1) {
     fetchBalanceWithRandomAccount(index, null);
-    await sleep(5000);
+    await sleep(500);
   }
 })();
